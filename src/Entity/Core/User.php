@@ -2,6 +2,7 @@
 
 namespace App\Entity\Core;
 
+use App\Entity\Core\Schedule\Chunk;
 use App\Repository\Core\User as UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -32,9 +33,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\ManyToMany(targetEntity: Task::class, mappedBy: 'owner')]
     private Collection $tasks;
 
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Chunk::class)]
+    private Collection $scheduleChunks;
+
     public function __construct()
     {
         $this->tasks = new ArrayCollection();
+        $this->scheduleChunks = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -129,6 +134,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         if ($this->tasks->removeElement($task)) {
             $task->removeOwner($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Chunk>
+     */
+    public function getScheduleChunks(): Collection
+    {
+        return $this->scheduleChunks;
+    }
+
+    public function addScheduleChunk(Chunk $scheduleChunk): self
+    {
+        if (!$this->scheduleChunks->contains($scheduleChunk)) {
+            $this->scheduleChunks->add($scheduleChunk);
+            $scheduleChunk->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeScheduleChunk(Chunk $scheduleChunk): self
+    {
+        if ($this->scheduleChunks->removeElement($scheduleChunk)) {
+            // set the owning side to null (unless already changed)
+            if ($scheduleChunk->getUser() === $this) {
+                $scheduleChunk->setUser(null);
+            }
         }
 
         return $this;

@@ -2,6 +2,7 @@
 
 namespace App\Entity\Core;
 
+use App\Entity\Core\Schedule\Chunk;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -35,9 +36,13 @@ class Task
     #[ORM\Column(nullable: true)]
     private ?int $spent = null;
 
+    #[ORM\OneToMany(mappedBy: 'link', targetEntity: Chunk::class)]
+    private Collection $scheduleChunks;
+
     public function __construct()
     {
         $this->owner = new ArrayCollection();
+        $this->scheduleChunks = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -137,6 +142,36 @@ class Task
     public function setSpent(?int $spent): self
     {
         $this->spent = $spent;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Chunk>
+     */
+    public function getScheduleChunks(): Collection
+    {
+        return $this->scheduleChunks;
+    }
+
+    public function addScheduleChunk(Chunk $scheduleChunk): self
+    {
+        if (!$this->scheduleChunks->contains($scheduleChunk)) {
+            $this->scheduleChunks->add($scheduleChunk);
+            $scheduleChunk->setLink($this);
+        }
+
+        return $this;
+    }
+
+    public function removeScheduleChunk(Chunk $scheduleChunk): self
+    {
+        if ($this->scheduleChunks->removeElement($scheduleChunk)) {
+            // set the owning side to null (unless already changed)
+            if ($scheduleChunk->getLink() === $this) {
+                $scheduleChunk->setLink(null);
+            }
+        }
 
         return $this;
     }

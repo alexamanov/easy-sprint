@@ -2,6 +2,7 @@
 
 namespace App\Entity\Core;
 
+use App\Entity\Core\Schedule\Calendar;
 use App\Repository\Core\Sprint as SprintRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
@@ -34,6 +35,12 @@ class Sprint
 
     #[ORM\Column(nullable: true)]
     private ?int $spent = null;
+
+    #[ORM\Column(length: 32, nullable: true)]
+    private ?string $status = null;
+
+    #[ORM\OneToOne(mappedBy: 'sprint', cascade: ['persist', 'remove'])]
+    private ?Calendar $calendar = null;
 
     public function getId(): ?int
     {
@@ -120,6 +127,40 @@ class Sprint
     public function setSpent(?int $spent): self
     {
         $this->spent = $spent;
+
+        return $this;
+    }
+
+    public function getStatus(): ?string
+    {
+        return $this->status;
+    }
+
+    public function setStatus(?string $status): self
+    {
+        $this->status = $status;
+
+        return $this;
+    }
+
+    public function getCalendar(): ?Calendar
+    {
+        return $this->calendar;
+    }
+
+    public function setCalendar(?Calendar $calendar): self
+    {
+        // unset the owning side of the relation if necessary
+        if ($calendar === null && $this->calendar !== null) {
+            $this->calendar->setSprint(null);
+        }
+
+        // set the owning side of the relation if necessary
+        if ($calendar !== null && $calendar->getSprint() !== $this) {
+            $calendar->setSprint($this);
+        }
+
+        $this->calendar = $calendar;
 
         return $this;
     }
