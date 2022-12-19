@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Controller\Crud;
+namespace App\Controller\Core\Crud;
 
-use App\Entity\Core\Sprint as SprintEntity;
+use App\Entity\Core\User as UserEntity;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 
-class Sprint extends AbstractCrudController
+class User extends AbstractCrudController
 {
     public static function getEntityFqcn(): string
     {
-        return SprintEntity::class;
+        return UserEntity::class;
     }
 
     /*

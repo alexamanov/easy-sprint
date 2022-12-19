@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller\Crud;
+namespace App\Controller\Core\Crud;
 
 use App\Entity\Core\Task as TaskEntity;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;

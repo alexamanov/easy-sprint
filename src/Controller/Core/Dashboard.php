@@ -44,6 +44,7 @@ class Dashboard extends AbstractDashboardController
     {
         yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
         yield MenuItem::linkToCrud('Sprints', 'fa-sharp fa-solid fa-person-running', Core\Sprint::class);
+        yield MenuItem::linkToCrud('Schedule', 'fa-solid fa-calendar-days', Core\Schedule\Calendar::class);
         yield MenuItem::linkToCrud('Bundles', 'fa-solid fa-file-zipper', Core\Bundle::class);
         yield MenuItem::linkToCrud('Team', 'fa-solid fa-people-group', Core\User::class);
         yield MenuItem::linkToCrud('Tasks', 'fa-solid fa-list-check', Core\Task::class);
