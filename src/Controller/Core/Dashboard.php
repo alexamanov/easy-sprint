@@ -2,7 +2,7 @@
 
 namespace App\Controller\Core;
 
-use App\Entity\Core\User;
+use App\Entity\Core;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard as ConfigDashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
@@ -43,6 +43,9 @@ class Dashboard extends AbstractDashboardController
     public function configureMenuItems(): iterable
     {
         yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
-        yield MenuItem::linkToCrud('Users', 'fas fa-list', User::class);
+        yield MenuItem::linkToCrud('Sprints', 'fa-sharp fa-solid fa-person-running', Core\Sprint::class);
+        yield MenuItem::linkToCrud('Bundles', 'fa-solid fa-file-zipper', Core\Bundle::class);
+        yield MenuItem::linkToCrud('Team', 'fa-solid fa-people-group', Core\User::class);
+        yield MenuItem::linkToCrud('Tasks', 'fa-solid fa-list-check', Core\Task::class);
     }
 }
