@@ -1,19 +1,20 @@
 <?php
 
-namespace App\Controller\App;
+namespace App\Controller\Core;
 
-use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
+use App\Entity\User;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard as ConfigDashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class DashboardController extends AbstractDashboardController
+class Dashboard extends AbstractDashboardController
 {
-    #[Route('/dashboard', name: 'dashboard')]
+    #[Route('/', name: 'dashboard')]
     public function index(): Response
     {
-        return parent::index();
+        //return parent::index();
 
         // Option 1. You can make your dashboard redirect to some common page of your backend
         //
@@ -29,18 +30,19 @@ class DashboardController extends AbstractDashboardController
         // Option 3. You can render some custom template to display a proper dashboard with widgets, etc.
         // (tip: it's easier if your template extends from @EasyAdmin/page/content.html.twig)
         //
-        // return $this->render('some/path/my-dashboard.html.twig');
+
+        return $this->render('@EasyAdmin/layout.html.twig');
     }
 
-    public function configureDashboard(): Dashboard
+    public function configureDashboard(): ConfigDashboard
     {
-        return Dashboard::new()
+        return ConfigDashboard::new()
             ->setTitle('Easy Sprint');
     }
 
     public function configureMenuItems(): iterable
     {
         yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
-        // yield MenuItem::linkToCrud('The Label', 'fas fa-list', EntityClass::class);
+        yield MenuItem::linkToCrud('Users', 'fas fa-list', User::class);
     }
 }
