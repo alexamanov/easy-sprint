@@ -2,7 +2,7 @@
 
 namespace App\Entity;
 
-use App\Repository\SprintRepository;
+use App\Repository\Sprint as SprintRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -17,10 +17,10 @@ class Sprint
     #[ORM\Column(length: 64)]
     private ?string $name = null;
 
-    #[ORM\Column(type: Types::ARRAY)]
+    #[ORM\Column(type: Types::JSON)]
     private array $users = [];
 
-    #[ORM\Column(type: Types::ARRAY)]
+    #[ORM\Column(type: Types::JSON)]
     private array $tasks = [];
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]

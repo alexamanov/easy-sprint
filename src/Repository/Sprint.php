@@ -2,26 +2,26 @@
 
 namespace App\Repository;
 
-use App\Entity\Sprint;
+use App\Entity\Sprint as SprintEntity;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @extends ServiceEntityRepository<Sprint>
+ * @extends ServiceEntityRepository<SprintEntity>
  *
- * @method Sprint|null find($id, $lockMode = null, $lockVersion = null)
- * @method Sprint|null findOneBy(array $criteria, array $orderBy = null)
- * @method Sprint[]    findAll()
- * @method Sprint[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method SprintEntity|null find($id, $lockMode = null, $lockVersion = null)
+ * @method SprintEntity|null findOneBy(array $criteria, array $orderBy = null)
+ * @method SprintEntity[]    findAll()
+ * @method SprintEntity[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class SprintRepository extends ServiceEntityRepository
+class Sprint extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Sprint::class);
+        parent::__construct($registry, SprintEntity::class);
     }
 
-    public function save(Sprint $entity, bool $flush = false): void
+    public function save(SprintEntity $entity, bool $flush = false): void
     {
         $this->getEntityManager()->persist($entity);
 
@@ -30,7 +30,7 @@ class SprintRepository extends ServiceEntityRepository
         }
     }
 
-    public function remove(Sprint $entity, bool $flush = false): void
+    public function remove(SprintEntity $entity, bool $flush = false): void
     {
         $this->getEntityManager()->remove($entity);
 
@@ -40,7 +40,7 @@ class SprintRepository extends ServiceEntityRepository
     }
 
 //    /**
-//     * @return Sprint[] Returns an array of Sprint objects
+//     * @return SprintEntity[] Returns an array of Sprint objects
 //     */
 //    public function findByExampleField($value): array
 //    {

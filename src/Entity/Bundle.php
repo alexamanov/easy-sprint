@@ -2,7 +2,7 @@
 
 namespace App\Entity;
 
-use App\Repository\BundleRepository;
+use App\Repository\Bundle as BundleRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -17,7 +17,7 @@ class Bundle
     #[ORM\Column(length: 32)]
     private ?string $name = null;
 
-    #[ORM\Column(type: Types::ARRAY)]
+    #[ORM\Column(type: Types::JSON)]
     private array $tasks = [];
 
     #[ORM\Column]
