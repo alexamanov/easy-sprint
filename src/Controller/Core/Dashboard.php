@@ -2,7 +2,7 @@
 
 namespace App\Controller\Core;
 
-use App\Entity\User;
+use App\Entity\Core\User;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard as ConfigDashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;

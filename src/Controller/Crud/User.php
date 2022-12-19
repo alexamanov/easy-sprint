@@ -2,7 +2,7 @@
 
 namespace App\Controller\Crud;
 
-use App\Entity\User as UserEntity;
+use App\Entity\Core\User as UserEntity;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 
 class User extends AbstractCrudController

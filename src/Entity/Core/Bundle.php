@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Entity;
+namespace App\Entity\Core;
 
-use App\Repository\Bundle as BundleRepository;
+use App\Repository\Core\Bundle as BundleRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
