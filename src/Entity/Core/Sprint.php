@@ -23,10 +23,10 @@ class Sprint
     #[ORM\Column(type: Types::JSON)]
     private array $tasks = [];
 
-    #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
+    #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $start = null;
 
-    #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
+    #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $end = null;
 
     #[ORM\Column(nullable: true)]
