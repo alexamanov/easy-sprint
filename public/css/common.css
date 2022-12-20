@@ -2,3 +2,11 @@
     display: flex;
     justify-content: center;
 }
+
+.e-sprint-max-content-width {
+    width: max-content;
+}
+
+.e-sprint-mg-top-20 {
+    margin-top: 20px;
+}
