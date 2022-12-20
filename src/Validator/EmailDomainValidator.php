@@ -16,7 +16,7 @@ class EmailDomainValidator extends ConstraintValidator
         }
 
         if (EmailDomain::SUPPORTED_DOMAIN !== $this->getEmailDomain($value)) {
-            $this->context->buildViolation($constraint->message)
+            $this->context->buildViolation($constraint->getMessage())
                 ->setParameter('{{ value }}', $value)
                 ->addViolation();
         }

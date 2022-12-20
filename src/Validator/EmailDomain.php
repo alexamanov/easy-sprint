@@ -14,10 +14,11 @@ class EmailDomain extends Constraint
 {
     public const SUPPORTED_DOMAIN = 'amasty.com';
 
-    /*
-     * Any public properties become valid options for the annotation.
-     * Then, use these in your validator class.
-     */
-    public string $message = 'The email  domain "{{ value }}" is not valid. Only the domain "'
+    private string $message = 'The email  domain "{{ value }}" is not valid. Only the domain "'
         . self::SUPPORTED_DOMAIN . '" supported';
+
+    public function getMessage(): string
+    {
+        return $this->message;
+    }
 }
