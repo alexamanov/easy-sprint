@@ -8,15 +8,17 @@
     {% endfor %}
 
     <div class="row e-sprint-max-content-width">
-        <h4>Register</h4>
+        <h4 class="center">Register</h4>
         {{ form_start(registrationForm) }}
         {{ form_row(registrationForm.email) }}
         {{ form_row(registrationForm.plainPassword, {
             label: 'Password'
         }) }}
-        {{ form_row(registrationForm.agreeTerms) }}
+{#        {{ form_row(registrationForm.agreeTerms) }}#}
 
-        <button type="submit" class="btn btn-small">Register</button>
+        <div class="row e-sprint-mg-top-20 center">
+            <button type="submit" class="btn btn-small">Register</button>
+        </div>
         <div class="e-sprint-mg-top-20">
             <a href="/login">Do you already have an account? Sign In</a>
         </div>
