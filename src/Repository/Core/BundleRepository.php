@@ -14,7 +14,7 @@ use Doctrine\Persistence\ManagerRegistry;
  * @method BundleEntity[]    findAll()
  * @method BundleEntity[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class Bundle extends ServiceEntityRepository
+class BundleRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {

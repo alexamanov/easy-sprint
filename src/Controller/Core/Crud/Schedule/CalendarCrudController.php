@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Controller\Core\Crud;
+namespace App\Controller\Core\Crud\Schedule;
 
-use App\Entity\Core\Task as TaskEntity;
+use App\Entity\Core\Schedule\Calendar as CalendarEntity;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 
-class Task extends AbstractCrudController
+class CalendarCrudController extends AbstractCrudController
 {
     public static function getEntityFqcn(): string
     {
-        return TaskEntity::class;
+        return CalendarEntity::class;
     }
 
     /*

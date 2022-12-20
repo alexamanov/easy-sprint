@@ -4,7 +4,7 @@ namespace App\Entity\Core\Schedule;
 
 use App\Entity\Core\Task;
 use App\Entity\Core\User;
-use App\Repository\Core\Schedule\Chunk as ScheduleChunkRepository;
+use App\Repository\Core\Schedule\ChunkRepository as ScheduleChunkRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 

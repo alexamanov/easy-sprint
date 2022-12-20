@@ -3,7 +3,7 @@
 namespace App\Entity\Core\Schedule;
 
 use App\Entity\Core\Sprint;
-use App\Repository\Core\Schedule\Calendar as CalendarRepository;
+use App\Repository\Core\Schedule\CalendarRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: CalendarRepository::class)]

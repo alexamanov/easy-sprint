@@ -2,14 +2,14 @@
 
 namespace App\Controller\Core\Crud;
 
-use App\Entity\Core\User as UserEntity;
+use App\Entity\Core\Task as TaskEntity;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 
-class User extends AbstractCrudController
+class TaskCrudController extends AbstractCrudController
 {
     public static function getEntityFqcn(): string
     {
-        return UserEntity::class;
+        return TaskEntity::class;
     }
 
     /*

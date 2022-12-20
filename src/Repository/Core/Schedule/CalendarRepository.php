@@ -14,7 +14,7 @@ use Doctrine\Persistence\ManagerRegistry;
  * @method CalendarEntity[]    findAll()
  * @method CalendarEntity[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class Calendar extends ServiceEntityRepository
+class CalendarRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {

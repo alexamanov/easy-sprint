@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Controller\Core\Crud\Schedule;
+namespace App\Controller\Core\Crud;
 
-use App\Entity\Core\Schedule\Calendar as CalendarEntity;
+use App\Entity\Core\User as UserEntity;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 
-class Calendar extends AbstractCrudController
+class UserCrudController extends AbstractCrudController
 {
     public static function getEntityFqcn(): string
     {
-        return CalendarEntity::class;
+        return UserEntity::class;
     }
 
     /*

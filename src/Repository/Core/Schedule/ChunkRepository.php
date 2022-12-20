@@ -14,7 +14,7 @@ use Doctrine\Persistence\ManagerRegistry;
  * @method ScheduleChunkEntity[]    findAll()
  * @method ScheduleChunkEntity[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class Chunk extends ServiceEntityRepository
+class ChunkRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {

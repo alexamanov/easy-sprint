@@ -3,7 +3,7 @@
 namespace App\Entity\Core;
 
 use App\Entity\Core\Schedule\Chunk;
-use App\Repository\Core\User as UserRepository;
+use App\Repository\Core\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;

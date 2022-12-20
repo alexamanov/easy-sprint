@@ -3,7 +3,7 @@
 namespace App\Entity\Core;
 
 use App\Entity\Core\Schedule\Calendar;
-use App\Repository\Core\Sprint as SprintRepository;
+use App\Repository\Core\SprintRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
