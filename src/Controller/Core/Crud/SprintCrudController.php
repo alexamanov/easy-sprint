@@ -3,12 +3,14 @@
 namespace App\Controller\Core\Crud;
 
 use App\Entity\Core\Sprint as SprintEntity;
-use EasyCorp\Bundle\EasyAdminBundle\Field\ArrayField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
+use App\Service\Core\GetAllBundlesForChoice;
+use EasyCorp\Bundle\EasyAdminBundle\Field;
 
 class SprintCrudController extends AbstractCrudWrapperController
 {
+    public function __construct(private readonly GetAllBundlesForChoice $getAllBundlesForChoice) {
+    }
+
     public static function getEntityFqcn(): string
     {
         return SprintEntity::class;
@@ -16,11 +18,15 @@ class SprintCrudController extends AbstractCrudWrapperController
 
     public function configureFields(string $pageName): iterable
     {
+        $bundleChoiceField = Field\ChoiceField::new('bundle')
+            ->setChoices($this->getAllBundlesForChoice->execute());
+
         return [
-            TextField::new('name'),
-            DateField::new('start'),
-            DateField::new('end'),
-            ArrayField::new('tasks')
+            Field\TextField::new('name'),
+            Field\DateField::new('start'),
+            Field\DateField::new('end'),
+            Field\ArrayField::new('tasks'),
+            $bundleChoiceField,
         ];
     }
 }
