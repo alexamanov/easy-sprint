@@ -21,6 +21,7 @@ class SprintCrudController extends AbstractCrudWrapperController
     {
         $bundleChoiceField = Field\ChoiceField::new('bundle_id')
             ->hideOnIndex()
+            ->addJsFiles('js/core/add-bundle-task-select.js')
             ->setChoices($this->getAllBundlesForChoice->execute());
 
         $statusField = Field\ChoiceField::new('status')->hideWhenCreating()
