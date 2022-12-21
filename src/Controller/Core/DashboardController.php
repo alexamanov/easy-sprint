@@ -3,6 +3,7 @@
 namespace App\Controller\Core;
 
 use App\Entity\Core;
+use App\Security\StandardAuthenticator;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard as ConfigDashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
@@ -14,10 +15,8 @@ class DashboardController extends AbstractDashboardController
     #[Route('/', name: 'dashboard')]
     public function index(): Response
     {
-        //return parent::index();
-
         if (!$this->getUser()) {
-            return $this->redirectToRoute('app_login');
+            return $this->redirectToRoute(StandardAuthenticator::LOGIN_ROUTE);
         }
 
         // Option 1. You can make your dashboard redirect to some common page of your backend
