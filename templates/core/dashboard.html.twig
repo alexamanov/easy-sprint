@@ -2,4 +2,10 @@
 
 {% block main %}
     <h4>Welcome to the Easy Sprint App!</h4>
+
+    <div class="row sf-toolbar-block-right">
+        {% if new_sprint_url %}
+            <a href="{{ new_sprint_url }}" class="btn btn-primary">Create new Sprint</a>
+        {% endif %}
+    </div>
 {% endblock %}

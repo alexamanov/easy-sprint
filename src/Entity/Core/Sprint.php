@@ -42,6 +42,9 @@ class Sprint
     #[ORM\OneToOne(mappedBy: 'sprint', cascade: ['persist', 'remove'])]
     private ?Calendar $calendar = null;
 
+    #[ORM\ManyToOne(inversedBy: 'sprints')]
+    private ?Bundle $bundle = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -161,6 +164,18 @@ class Sprint
         }
 
         $this->calendar = $calendar;
+
+        return $this;
+    }
+
+    public function getBundle(): ?Bundle
+    {
+        return $this->bundle;
+    }
+
+    public function setBundle(?Bundle $bundle): self
+    {
+        $this->bundle = $bundle;
 
         return $this;
     }

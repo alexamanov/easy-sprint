@@ -2,13 +2,18 @@
 
 namespace App\Controller\Core;
 
+use App\Controller\Core\Crud\SprintCrudController;
 use App\Entity\Core;
 use App\Security\StandardAuthenticator;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard as ConfigDashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
+use EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGenerator;
+use Psr\Container\ContainerExceptionInterface;
+use Psr\Container\NotFoundExceptionInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
 
 class DashboardController extends AbstractDashboardController
 {
@@ -19,22 +24,20 @@ class DashboardController extends AbstractDashboardController
             return $this->redirectToRoute(StandardAuthenticator::LOGIN_ROUTE);
         }
 
-        // Option 1. You can make your dashboard redirect to some common page of your backend
-        //
-        // $adminUrlGenerator = $this->container->get(AdminUrlGenerator::class);
-        // return $this->redirect($adminUrlGenerator->setController(OneOfYourCrudController::class)->generateUrl());
+        try {
+            $adminUrlGenerator = $this->container->get(AdminUrlGenerator::class);
+            $newSprintUrl = $adminUrlGenerator->setController(SprintCrudController::class)
+                ->setAction(Action::NEW)
+                ->generateUrl();
+        } catch (NotFoundExceptionInterface|ContainerExceptionInterface $e) {
+        }
 
-        // Option 2. You can make your dashboard redirect to different pages depending on the user
-        //
-        // if ('jane' === $this->getUser()->getUsername()) {
-        //     return $this->redirect('...');
-        // }
-
-        // Option 3. You can render some custom template to display a proper dashboard with widgets, etc.
-        // (tip: it's easier if your template extends from @EasyAdmin/page/content.html.twig)
-        //
-
-        return $this->render('core/dashboard.html.twig');
+        return $this->render(
+            'core/dashboard.html.twig',
+            [
+                'new_sprint_url' => $newSprintUrl ?? null,
+            ]
+        );
     }
 
     public function configureDashboard(): ConfigDashboard

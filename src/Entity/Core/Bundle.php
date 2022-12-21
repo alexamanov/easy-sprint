@@ -3,6 +3,8 @@
 namespace App\Entity\Core;
 
 use App\Repository\Core\BundleRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -22,6 +24,14 @@ class Bundle
 
     #[ORM\Column]
     private ?\DateTimeImmutable $created_at = null;
+
+    #[ORM\OneToMany(mappedBy: 'bundle', targetEntity: Sprint::class)]
+    private Collection $sprints;
+
+    public function __construct()
+    {
+        $this->sprints = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -60,6 +70,36 @@ class Bundle
     public function setCreatedAt(\DateTimeImmutable $created_at): self
     {
         $this->created_at = $created_at;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Sprint>
+     */
+    public function getSprints(): Collection
+    {
+        return $this->sprints;
+    }
+
+    public function addSprint(Sprint $sprint): self
+    {
+        if (!$this->sprints->contains($sprint)) {
+            $this->sprints->add($sprint);
+            $sprint->setBundle($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSprint(Sprint $sprint): self
+    {
+        if ($this->sprints->removeElement($sprint)) {
+            // set the owning side to null (unless already changed)
+            if ($sprint->getBundle() === $this) {
+                $sprint->setBundle(null);
+            }
+        }
 
         return $this;
     }
