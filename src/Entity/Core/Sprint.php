@@ -4,6 +4,7 @@ namespace App\Entity\Core;
 
 use App\Entity\Core\Schedule\Calendar;
 use App\Repository\Core\SprintRepository;
+use App\Source\Sprint\Status;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -37,7 +38,7 @@ class Sprint
     private ?int $spent = null;
 
     #[ORM\Column(length: 32, nullable: true)]
-    private ?string $status = null;
+    private int $status = Status::READY_TO_START;
 
     #[ORM\OneToOne(mappedBy: 'sprint', cascade: ['persist', 'remove'])]
     private ?Calendar $calendar = null;
