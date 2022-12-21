@@ -3,9 +3,8 @@
 namespace App\Controller\Core\Crud;
 
 use App\Entity\Core\User as UserEntity;
-use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 
-class UserCrudController extends AbstractCrudController
+class UserCrudController extends AbstractCrudWrapperController
 {
     public static function getEntityFqcn(): string
     {

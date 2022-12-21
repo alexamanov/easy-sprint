@@ -2,10 +2,10 @@
 
 namespace App\Controller\Core\Crud\Schedule;
 
+use App\Controller\Core\Crud\AbstractCrudWrapperController;
 use App\Entity\Core\Schedule\Calendar as CalendarEntity;
-use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 
-class CalendarCrudController extends AbstractCrudController
+class CalendarCrudController extends AbstractCrudWrapperController
 {
     public static function getEntityFqcn(): string
     {

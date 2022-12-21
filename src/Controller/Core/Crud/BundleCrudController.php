@@ -4,11 +4,10 @@ namespace App\Controller\Core\Crud;
 
 use App\Entity\Core\Bundle as BundleEntity;
 use Doctrine\ORM\EntityManagerInterface;
-use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ArrayField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 
-class BundleCrudController extends AbstractCrudController
+class BundleCrudController extends AbstractCrudWrapperController
 {
     public static function getEntityFqcn(): string
     {

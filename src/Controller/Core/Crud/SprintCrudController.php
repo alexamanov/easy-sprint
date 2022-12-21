@@ -3,9 +3,8 @@
 namespace App\Controller\Core\Crud;
 
 use App\Entity\Core\Sprint as SprintEntity;
-use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 
-class SprintCrudController extends AbstractCrudController
+class SprintCrudController extends AbstractCrudWrapperController
 {
     public static function getEntityFqcn(): string
     {

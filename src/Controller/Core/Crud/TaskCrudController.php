@@ -3,9 +3,8 @@
 namespace App\Controller\Core\Crud;
 
 use App\Entity\Core\Task as TaskEntity;
-use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 
-class TaskCrudController extends AbstractCrudController
+class TaskCrudController extends AbstractCrudWrapperController
 {
     public static function getEntityFqcn(): string
     {
