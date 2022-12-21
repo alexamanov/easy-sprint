@@ -45,6 +45,9 @@ class Sprint
     #[ORM\ManyToOne(inversedBy: 'sprints')]
     private ?Bundle $bundle = null;
 
+    #[ORM\Column(nullable: true)]
+    private ?int $bundle_id = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -176,6 +179,18 @@ class Sprint
     public function setBundle(?Bundle $bundle): self
     {
         $this->bundle = $bundle;
+
+        return $this;
+    }
+
+    public function getBundleId(): ?int
+    {
+        return $this->bundle_id;
+    }
+
+    public function setBundleId(?int $bundle_id): self
+    {
+        $this->bundle_id = $bundle_id;
 
         return $this;
     }

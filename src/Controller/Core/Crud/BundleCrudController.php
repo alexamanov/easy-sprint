@@ -4,8 +4,7 @@ namespace App\Controller\Core\Crud;
 
 use App\Entity\Core\Bundle as BundleEntity;
 use Doctrine\ORM\EntityManagerInterface;
-use EasyCorp\Bundle\EasyAdminBundle\Field\ArrayField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
+use EasyCorp\Bundle\EasyAdminBundle\Field;
 
 class BundleCrudController extends AbstractCrudWrapperController
 {
@@ -17,8 +16,9 @@ class BundleCrudController extends AbstractCrudWrapperController
     public function configureFields(string $pageName): iterable
     {
         return [
-            TextField::new('name'),
-            ArrayField::new('tasks'),
+            Field\TextField::new('name'),
+            Field\ArrayField::new('tasks'),
+            Field\DateTimeField::new('created_at')->hideOnForm(),
         ];
     }
 
