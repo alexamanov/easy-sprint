@@ -3,7 +3,10 @@
 namespace App\Controller\Core\Crud;
 
 use App\Entity\Core\Bundle as BundleEntity;
+use Doctrine\ORM\EntityManagerInterface;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use EasyCorp\Bundle\EasyAdminBundle\Field\ArrayField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 
 class BundleCrudController extends AbstractCrudController
 {
@@ -12,14 +15,26 @@ class BundleCrudController extends AbstractCrudController
         return BundleEntity::class;
     }
 
-    /*
     public function configureFields(string $pageName): iterable
     {
         return [
-            IdField::new('id'),
-            TextField::new('title'),
-            TextEditorField::new('description'),
+            TextField::new('name'),
+            ArrayField::new('tasks'),
         ];
     }
-    */
+
+    /**
+     * @param EntityManagerInterface $entityManager
+     * @param BundleEntity $entityInstance
+     *
+     * @return void
+     */
+    public function persistEntity(EntityManagerInterface $entityManager, $entityInstance): void
+    {
+        if (!$entityInstance->getCreatedAt()) {
+            $entityInstance->setCreatedAt(new \DateTimeImmutable());
+        }
+
+        parent::persistEntity($entityManager, $entityInstance);
+    }
 }
