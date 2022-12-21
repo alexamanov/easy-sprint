@@ -2,14 +2,14 @@
 
 namespace App\Controller\Core;
 
+use App\Repository\Core\BundleRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use App\Repository\Core\BundleRepository;
-use Symfony\Component\HttpFoundation\RequestStack;
 
-class BundleTaskMultiselectController extends AbstractController
+class BundleTaskHtmlController extends AbstractController
 {
     public function __construct(
         private readonly RequestStack $requestStack,
@@ -32,7 +32,7 @@ class BundleTaskMultiselectController extends AbstractController
             $bundle = $this->bundleRepository->find($bundleId);
             if ($bundle) {
                 $html = $this->renderView(
-                    'core/crud/field/multiselect.html.twig',
+                    'core/crud/field/list.html.twig',
                     [
                         'id' => 'tasks_multiselect',
                         'entityName' => 'Tasks',

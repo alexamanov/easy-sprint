@@ -19,7 +19,7 @@ class SprintCrudController extends AbstractCrudWrapperController
 
     public function configureFields(string $pageName): iterable
     {
-        $bundleChoiceField = Field\ChoiceField::new('bundle_id')
+        $bundleChoiceField = Field\ChoiceField::new('bundle_id', 'Task Bundle')
             ->hideOnIndex()
             ->addJsFiles('js/core/add-bundle-task-select.js')
             ->setChoices($this->getAllBundlesForChoice->execute());
@@ -28,6 +28,7 @@ class SprintCrudController extends AbstractCrudWrapperController
             ->setChoices(Status::getStatuses());
 
         return [
+            Field\IdField::new('id')->onlyOnIndex(),
             Field\TextField::new('name'),
             $statusField,
             Field\DateField::new('start'),

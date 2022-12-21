@@ -4,6 +4,7 @@ namespace App\Controller\Core\Crud;
 
 use App\Entity\Core\Bundle as BundleEntity;
 use Doctrine\ORM\EntityManagerInterface;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Field;
 
 class BundleCrudController extends AbstractCrudWrapperController
@@ -13,9 +14,18 @@ class BundleCrudController extends AbstractCrudWrapperController
         return BundleEntity::class;
     }
 
+    public function configureCrud(Crud $crud): Crud
+    {
+        $crud = parent::configureCrud($crud);
+        $crud->setPageTitle(Crud::PAGE_INDEX, 'Task Bundle');
+
+        return $crud;
+    }
+
     public function configureFields(string $pageName): iterable
     {
         return [
+            Field\IdField::new('id')->onlyOnIndex(),
             Field\TextField::new('name'),
             Field\ArrayField::new('tasks'),
             Field\DateTimeField::new('created_at')->hideOnForm(),

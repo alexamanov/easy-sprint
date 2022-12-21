@@ -1,0 +1,7 @@
+{% block main %}
+<ul id="{{ id }}">
+    {% for option in options %}
+    <li value="{{ option }}">{{ option }}</li>
+    {% endfor %}
+</ul>
+{% endblock %}
