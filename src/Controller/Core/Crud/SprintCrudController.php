@@ -20,7 +20,6 @@ class SprintCrudController extends AbstractCrudWrapperController
     public function configureFields(string $pageName): iterable
     {
         $bundleChoiceField = Field\ChoiceField::new('bundle_id')
-            ->setTemplatePath('core/crud/field/bundle_choice.html.twig')
             ->hideOnIndex()
             ->setChoices($this->getAllBundlesForChoice->execute());
 

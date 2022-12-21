@@ -38,7 +38,7 @@ class Sprint
     private ?int $spent = null;
 
     #[ORM\Column(length: 32, nullable: true)]
-    private int $status = Status::READY_TO_START;
+    private ?int $status = Status::READY_TO_START;
 
     #[ORM\OneToOne(mappedBy: 'sprint', cascade: ['persist', 'remove'])]
     private ?Calendar $calendar = null;
@@ -138,12 +138,12 @@ class Sprint
         return $this;
     }
 
-    public function getStatus(): ?string
+    public function getStatus(): ?int
     {
         return $this->status;
     }
 
-    public function setStatus(?string $status): self
+    public function setStatus(?int $status): self
     {
         $this->status = $status;
 
