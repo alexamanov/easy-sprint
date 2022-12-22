@@ -4,6 +4,7 @@ namespace App\Repository\Core;
 
 use App\Entity\Core\Task as TaskEntity;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -36,6 +37,19 @@ class TaskRepository extends ServiceEntityRepository
 
         if ($flush) {
             $this->getEntityManager()->flush();
+        }
+    }
+
+    public function findOneByCode(string $code): ?TaskEntity
+    {
+        try {
+            return $this->createQueryBuilder('task')
+                ->andWhere('task.code = :code')
+                ->setParameter('code', $code)
+                ->getQuery()
+                ->getOneOrNullResult();
+        } catch (NonUniqueResultException $e) {
+            throw new \RuntimeException($e->getMessage());
         }
     }
 
