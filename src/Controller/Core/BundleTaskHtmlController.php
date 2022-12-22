@@ -30,7 +30,7 @@ class BundleTaskHtmlController extends AbstractController
         $bundleId = (int) $request->get('bundleId');
         if ($bundleId) {
             $bundle = $this->bundleRepository->find($bundleId);
-            if ($bundle) {
+            if ($bundle && $bundle->getTasks()) {
                 $html = $this->renderView(
                     'core/crud/field/list.html.twig',
                     [

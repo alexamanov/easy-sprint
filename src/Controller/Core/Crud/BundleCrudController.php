@@ -3,8 +3,7 @@
 namespace App\Controller\Core\Crud;
 
 use App\Entity\Core\Bundle as BundleEntity;
-use App\Entity\Core\Task;
-use App\Repository\Core\TaskRepository;
+use App\Service\Handler\Save\Bundle\TaskSaveHandler;
 use Doctrine\ORM\EntityManagerInterface;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Field;
@@ -12,7 +11,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field;
 class BundleCrudController extends AbstractCrudWrapperController
 {
     public function __construct(
-        private readonly TaskRepository $taskRepository
+        private readonly TaskSaveHandler $taskSaveHandler
     ) {
     }
 
@@ -51,14 +50,7 @@ class BundleCrudController extends AbstractCrudWrapperController
             $entityInstance->setCreatedAt(new \DateTimeImmutable());
         }
 
-        foreach ($entityInstance->getTasks() as $taskCode) {
-            $taskEntity = $this->taskRepository->findOneByCode($taskCode);
-            if (!$taskEntity) {
-                $taskEntity = new Task();
-                $taskEntity->setCode($taskCode);
-                $this->taskRepository->save($taskEntity);
-            }
-        }
+        $this->taskSaveHandler->save($entityInstance);
 
         parent::persistEntity($entityManager, $entityInstance);
     }

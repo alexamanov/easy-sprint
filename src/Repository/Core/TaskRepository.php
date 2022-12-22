@@ -53,6 +53,19 @@ class TaskRepository extends ServiceEntityRepository
         }
     }
 
+    public function findOneByLink(string $link): ?TaskEntity
+    {
+        try {
+            return $this->createQueryBuilder('task')
+                ->andWhere('task.link = :link')
+                ->setParameter('link', $link)
+                ->getQuery()
+                ->getOneOrNullResult();
+        } catch (NonUniqueResultException $e) {
+            throw new \RuntimeException($e->getMessage());
+        }
+    }
+
 //    /**
 //     * @return TaskEntity[] Returns an array of Task objects
 //     */
