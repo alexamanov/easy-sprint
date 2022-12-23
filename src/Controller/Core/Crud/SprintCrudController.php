@@ -5,6 +5,7 @@ namespace App\Controller\Core\Crud;
 use App\Entity\Core\Sprint as SprintEntity;
 use App\Service\Core\GetAllBundlesForChoice;
 use App\Source\Sprint\Status;
+use App\Ui\Component\Form\Extension\Core\Type\ChoiceWithListType;
 use EasyCorp\Bundle\EasyAdminBundle\Field;
 
 class SprintCrudController extends AbstractCrudWrapperController
@@ -21,7 +22,8 @@ class SprintCrudController extends AbstractCrudWrapperController
     {
         $bundleChoiceField = Field\ChoiceField::new('bundle_id', 'Task Bundle')
             ->hideOnIndex()
-            //->addJsFiles('js/core/add-bundle-task-select.js')
+            ->addFormTheme('form/fields.html.twig')
+            ->setFormType(ChoiceWithListType::class)
             ->setChoices($this->getAllBundlesForChoice->execute());
 
         $statusField = Field\ChoiceField::new('status')->hideWhenCreating()
@@ -34,7 +36,7 @@ class SprintCrudController extends AbstractCrudWrapperController
             Field\DateField::new('start'),
             Field\DateField::new('end'),
             Field\ArrayField::new('tasks')->hideOnIndex(),
-            $bundleChoiceField,
+            $bundleChoiceField
         ];
     }
 }

@@ -1,8 +1,0 @@
-{% block main %}
-    <label for="{{ id }}">Choose {{ entityName }}:</label>
-    <select name="{{ id }}" id="{{ id }}" multiple>
-        {% for option in options %}
-            <option value="{{ option }}">{{ option }}</option>
-        {% endfor %}
-    </select>
-{% endblock %}

@@ -1,0 +1,10 @@
+{% block choice_with_list_widget %}
+    <link href="{{ asset('css/bundle-task-list.css') }}" rel="stylesheet"/>
+
+    <div class="e-sprint-choice-with-list-wrapper">
+        {{ block('choice_widget') }}
+        <ul id="e-sprint-bundle-task-list" />
+    </div>
+
+    <script src="{{ asset('js/core/bundle-task-list.js') }}"></script>
+{% endblock %}
