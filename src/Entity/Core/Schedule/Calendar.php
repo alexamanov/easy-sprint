@@ -20,6 +20,9 @@ class Calendar
     #[ORM\Column(nullable: true)]
     private array $chunk_ids = [];
 
+    #[ORM\Column(nullable: true)]
+    private ?int $sprintId = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -45,6 +48,18 @@ class Calendar
     public function setChunkIds(?array $chunk_ids): self
     {
         $this->chunk_ids = $chunk_ids;
+
+        return $this;
+    }
+
+    public function getSprintId(): ?int
+    {
+        return $this->sprintId;
+    }
+
+    public function setSprintId(?int $sprintId): self
+    {
+        $this->sprintId = $sprintId;
 
         return $this;
     }
