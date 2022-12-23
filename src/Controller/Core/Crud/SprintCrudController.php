@@ -36,7 +36,7 @@ class SprintCrudController extends AbstractCrudWrapperController
             Field\DateField::new('start'),
             Field\DateField::new('end'),
             Field\ArrayField::new('tasks')->hideOnIndex(),
-            $bundleChoiceField
+            $bundleChoiceField,
         ];
     }
 }
