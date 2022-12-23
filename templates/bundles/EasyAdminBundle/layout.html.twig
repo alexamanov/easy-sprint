@@ -5,4 +5,9 @@
 {% block head_javascript %}
     <script src="{{ asset('app.js', ea.assets.defaultAssetPackageName) }}"></script>
     <script src="{{ asset('js/lib/require.js') }}"></script>
+    <script>
+        require.config({
+            baseUrl: '/js/'
+        });
+    </script>
 {% endblock head_javascript %}

@@ -8,7 +8,7 @@
 .e-sprint-choice-with-calendar-wrapper .month {
     padding: 10px 5px;
     width: 100%;
-    background: #222;
+    background: var(--button-primary-bg);
     text-align: center;
 }
 
@@ -71,6 +71,6 @@
 /* Highlight the "current" day */
 .e-sprint-choice-with-calendar-wrapper .days li .active {
     padding: 5px;
-    background: #000;
+    background: var(--button-primary-bg);
     color: white
 }
