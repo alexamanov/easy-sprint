@@ -85,3 +85,7 @@
     background: var(--button-primary-bg);
     color: white
 }
+
+.e-sprint-choice-with-calendar-wrapper .task-list {
+    padding: 0;
+}

@@ -1,4 +1,8 @@
 require([], function () {
+    const linkToCode = function (link) {
+        return link.split('/').reverse()[0];
+    }
+
     const emailToUsername = function (email) {
         let fullName = email.split('@')[0];
         fullName = fullName.split('.');
@@ -117,7 +121,10 @@ require([], function () {
         parentElement.insertBefore(startDateElement, calendarElement);
         parentElement.insertBefore(endDateElement, calendarElement);
 
-        let taskListElement = document.createElement('ul');
+        const taskListElement = document.createElement('ul');
+        taskListElement.classList.add('task-list');
+        const taskListLabelElement = document.createElement('h4');
+        taskListLabelElement.innerText = 'Task List';
 
         for (let taskIndex in tasks) {
             let task = tasks[taskIndex];
@@ -125,12 +132,13 @@ require([], function () {
             let linkElement = document.createElement('a');
 
             linkElement.setAttribute('href', task);
-            linkElement.appendChild(document.createTextNode(task));
+            linkElement.appendChild(document.createTextNode(linkToCode(task)));
             li.appendChild(linkElement);
 
             taskListElement.appendChild(li);
         }
 
         parentElement.insertBefore(taskListElement, calendarElement);
+        parentElement.insertBefore(taskListLabelElement, taskListElement);
     });
 });
