@@ -26,6 +26,7 @@ class CalendarCrudController extends AbstractCrudWrapperController
         $sprintField = ChoiceField::new('sprint_id', 'Sprint')
             ->addFormTheme('form/fields.html.twig')
             ->setFormType(ChoiceWithCalendarType::class)
+            ->setColumns(8)
             ->setChoices($this->getSprintsForChoice->execute());
 
         return [

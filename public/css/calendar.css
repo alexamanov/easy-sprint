@@ -6,7 +6,7 @@
 
 /* Month header */
 .e-sprint-choice-with-calendar-wrapper .month {
-    padding: 10px 5px;
+    padding: 5px;
     width: 100%;
     background: var(--button-primary-bg);
     text-align: center;
@@ -26,42 +26,53 @@
 }
 
 /* Previous button inside month header */
-.e-sprint-choice-with-calendar-wrapper .month .prev {
+.e-sprint-choice-with-calendar-wrapper .prev {
     float: left;
     padding-top: 10px;
 }
 
 /* Next button */
-.e-sprint-choice-with-calendar-wrapper .month .next {
+.e-sprint-choice-with-calendar-wrapper .next {
     float: right;
     padding-top: 10px;
+}
+
+.e-sprint-choice-with-calendar-wrapper .next, .e-sprint-choice-with-calendar-wrapper .prev {
+    display: flex;
+    align-items: center;
 }
 
 /* Weekdays (Mon-Sun) */
 .e-sprint-choice-with-calendar-wrapper .weekdays {
     margin: 0;
     padding: 10px 0;
-    background-color:#ddd;
+    background-color: #ddd;
+    display: flex;
+    justify-content: center;
 }
 
 .e-sprint-choice-with-calendar-wrapper .weekdays li {
     display: inline-block;
-    width: 13.6%;
+    width: 11.9%;
     color: #666;
     text-align: center;
 }
 
+.e-sprint-choice-with-calendar-wrapper .weekdays li.active {
+    color: var(--button-primary-bg);
+}
+
 /* Days (1-31) */
-.e-sprint-choice-with-calendar-wrapper .days {
+.e-sprint-choice-with-calendar-wrapper .cells {
     padding: 10px 0;
     background: #eee;
     margin: 0;
 }
 
-.e-sprint-choice-with-calendar-wrapper .days li {
+.e-sprint-choice-with-calendar-wrapper .cells li {
     list-style-type: none;
     display: inline-block;
-    width: 13.6%;
+    width: 11.9%;
     text-align: center;
     margin-bottom: 5px;
     font-size:12px;
@@ -69,8 +80,8 @@
 }
 
 /* Highlight the "current" day */
-.e-sprint-choice-with-calendar-wrapper .days li .active {
-    padding: 5px;
+.e-sprint-choice-with-calendar-wrapper .cells .active {
+    padding: 2px;
     background: var(--button-primary-bg);
     color: white
 }

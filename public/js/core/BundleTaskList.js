@@ -38,7 +38,7 @@ define(function () {
 
         async getTasksByBundleId(bundleId) {
             if (!(bundleId in this.cache)) {
-                let response = await fetch(`/api/bundle/task/get?bundle_id=${bundleId}`);
+                let response = await fetch(`/api/bundle/task/${bundleId}`);
                 response = await response.json();
                 this.cache[bundleId] = response.tasks;
             }

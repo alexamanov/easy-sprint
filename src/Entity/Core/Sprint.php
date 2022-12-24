@@ -9,7 +9,7 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: SprintRepository::class)]
-class Sprint
+class Sprint implements \JsonSerializable
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -194,5 +194,14 @@ class Sprint
         $this->bundle_id = $bundle_id;
 
         return $this;
+    }
+
+    public function jsonSerialize(): array
+    {
+        return [
+            'start' => $this->getStart(),
+            'end' => $this->getEnd(),
+            'tasks' => $this->getTasks(),
+        ];
     }
 }
