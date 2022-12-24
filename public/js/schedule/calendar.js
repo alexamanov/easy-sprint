@@ -1,4 +1,4 @@
-require([], function () {
+require(['schedule/CalendarElement'], function (CalendarElement) {
     const linkToCode = function (link) {
         return link.split('/').reverse()[0];
     }
@@ -17,67 +17,7 @@ require([], function () {
         return response.users;
     }
 
-    const getDaysCount = function (year, month) {
-        return new Date(year, month, 0).getDate();
-    }
-
-    const getCurrentDay = function () {
-        return new Date().getDay() - 1;
-    }
-
-    const getCurrentMonday = function () {
-        const date = new Date();
-
-        return date.getDate() - date.getDay() + 1;
-    }
-
-    const getCurrentYear = function () {
-        return new Date().getFullYear();
-    }
-
-    const getWeekdays = function () {
-        const weekdays = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
-        let dayNumber = getCurrentMonday();
-
-        weekdays.forEach(function (weekday, index) {
-            weekdays[index] = `${dayNumber++}<br/>${weekday}`;
-        });
-
-        return weekdays;
-    }
-
-    const getCurrentMonthName = function () {
-        return new Date().toLocaleString('default', { month: 'long' });
-    }
-
     const parentElement = document.querySelector('.e-sprint-choice-with-calendar-wrapper');
-    const currentMonthElement = parentElement.querySelector('.e-sprint-month-name');
-    const currentYearElement = parentElement.querySelector('.e-sprint-year');
-    const weekdaysElement = parentElement.querySelector('.weekdays');
-
-    currentMonthElement.innerHTML = getCurrentMonthName();
-    currentYearElement.innerText = getCurrentYear();
-
-    let prev = document.createElement('li');
-    prev.innerHTML = '&#10094;';
-    prev.classList.add('prev');
-    weekdaysElement.appendChild(prev);
-
-    getWeekdays().forEach(function (day, index) {
-        let li = document.createElement('li');
-
-        if (index === getCurrentDay()) {
-            li.classList.add('active');
-        }
-
-        li.innerHTML = day;
-        weekdaysElement.appendChild(li);
-    });
-
-    let next = document.createElement('li');
-    next.innerHTML = '&#10095;';
-    next.classList.add('next');
-    weekdaysElement.appendChild(next);
 
     const sprintSelectElement = parentElement.querySelector('select');
     const calendarElement = parentElement.querySelector('.calendar');
@@ -103,6 +43,9 @@ require([], function () {
         }
     });
 
+    const calendarElementInstance = new CalendarElement(parentElement);
+    calendarElementInstance.initCalendar();
+
     sprintSelectElement.addEventListener('change', async function (event) {
         let sprintId = event.target.value;
 
@@ -117,6 +60,9 @@ require([], function () {
         let endDateElement = document.createElement('p');
         startDateElement.innerHTML = `Start: ${new Date(startDate).toDateString()}`;
         endDateElement.innerHTML = `End: ${new Date(endDate).toDateString()}`;
+
+        startDateElement.classList.add('date');
+        endDateElement.classList.add('date');
 
         parentElement.insertBefore(startDateElement, calendarElement);
         parentElement.insertBefore(endDateElement, calendarElement);

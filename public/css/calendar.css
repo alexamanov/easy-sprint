@@ -40,6 +40,7 @@
 .e-sprint-choice-with-calendar-wrapper .next, .e-sprint-choice-with-calendar-wrapper .prev {
     display: flex;
     align-items: center;
+    cursor: pointer;
 }
 
 /* Weekdays (Mon-Sun) */
@@ -60,6 +61,7 @@
 
 .e-sprint-choice-with-calendar-wrapper .weekdays li.active {
     color: var(--button-primary-bg);
+    font-weight: bold;
 }
 
 /* Days (1-31) */
@@ -88,4 +90,16 @@
 
 .e-sprint-choice-with-calendar-wrapper .task-list {
     padding: 0;
+}
+
+.e-sprint-choice-with-calendar-wrapper .date {
+    font-style: italic;
+}
+
+.e-sprint-choice-with-calendar-wrapper .start-date {
+    border: 2px solid brown;
+}
+
+.e-sprint-choice-with-calendar-wrapper .start-date {
+    border: 2px solid green;
 }
