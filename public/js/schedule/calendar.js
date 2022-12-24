@@ -67,6 +67,9 @@ require(['schedule/CalendarElement'], function (CalendarElement) {
         parentElement.insertBefore(startDateElement, calendarElement);
         parentElement.insertBefore(endDateElement, calendarElement);
 
+        calendarElementInstance.updateStartDate(startDate);
+        calendarElementInstance.updateEndDate(endDate);
+
         const taskListElement = document.createElement('ul');
         taskListElement.classList.add('task-list');
         const taskListLabelElement = document.createElement('h4');

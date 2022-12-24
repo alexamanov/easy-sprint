@@ -30,6 +30,9 @@ define([], function () {
             this.nextElement.addEventListener('click', this.handleNextClick.bind(this));
 
             this.currentMonday = this.getCurrentMonday();
+
+            this.startDate = null;
+            this.endDate = null;
         }
 
         initCalendar() {
@@ -128,6 +131,43 @@ define([], function () {
             }.bind(this));
 
             this.weekdaysElement.appendChild(this.nextElement);
+
+            this.updateStartDate();
+            this.updateEndDate();
+        }
+
+        formatDate(date) {
+            return [date.getFullYear(), date.getMonth() + 1, date.getDate()].join('-');
+        }
+
+        updateStartDate(startDate = null) {
+            if (startDate) {
+                startDate = this.formatDate(new Date(startDate));
+            } else {
+                startDate = this.startDate;
+            }
+
+            let startDateElement = this.weekdaysElement.querySelector(`[date="${startDate}"]`);
+            if (startDateElement) {
+                startDateElement.classList.add('start-date');
+            } else {
+                this.startDate = startDate;
+            }
+        }
+
+        updateEndDate(endDate = null) {
+            if (endDate) {
+                endDate = this.formatDate(new Date(endDate));
+            } else {
+                endDate = this.endDate;
+            }
+
+            let endDateElement = this.weekdaysElement.querySelector(`[date="${endDate}"]`);
+            if (endDateElement) {
+                endDateElement.classList.add('end-date');
+            } else {
+                this.endDate = endDate;
+            }
         }
     }
 
