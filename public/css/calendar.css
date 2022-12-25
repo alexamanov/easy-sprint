@@ -87,12 +87,13 @@
     color: white
 }
 
-.e-sprint-choice-with-calendar-wrapper .task-list {
+.e-sprint-choice-with-calendar-wrapper .e-sprint-task-list {
     padding: 0;
 }
 
 .e-sprint-choice-with-calendar-wrapper .date {
-    font-style: italic;
+    margin-top: 10px;
+    font-weight: 450;
 }
 
 .e-sprint-choice-with-calendar-wrapper .end-date {

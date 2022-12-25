@@ -29,6 +29,8 @@ define([], function () {
 
             this.startDate = null;
             this.endDate = null;
+            this.startDateElement = null;
+            this.endDateElement = null;
         }
 
         initCalendar() {
@@ -138,9 +140,14 @@ define([], function () {
                 startDate = this.startDate;
             }
 
+            if (this.startDateElement) {
+                this.startDateElement.classList.remove('start-date');
+            }
+
             let startDateElement = this.weekdaysElement.querySelector(`[date="${startDate}"]`);
             if (startDateElement) {
-                startDateElement.classList.add('start-date');
+                this.startDateElement = startDateElement;
+                this.startDateElement.classList.add('start-date');
             } else {
                 this.startDate = startDate;
             }
@@ -153,9 +160,14 @@ define([], function () {
                 endDate = this.endDate;
             }
 
+            if (this.endDateElement) {
+                this.endDateElement.classList.remove('end-date');
+            }
+
             let endDateElement = this.weekdaysElement.querySelector(`[date="${endDate}"]`);
             if (endDateElement) {
-                endDateElement.classList.add('end-date');
+                this.endDateElement = endDateElement;
+                this.endDateElement.classList.add('end-date');
             } else {
                 this.endDate = endDate;
             }

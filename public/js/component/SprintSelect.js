@@ -2,28 +2,49 @@ define([], function () {
     'use strict';
 
     class SprintSelect {
-        constructor(sprintSelectElement) {
-            this.sprintSelectElement = sprintSelectElement;
-            this.sprintSelectElement.addEventListener('change', this.handleChange.bind(this));
+        constructor(
+            parentElement,
+            calendar
+        ) {
+            this.sprintSelectElement = parentElement.querySelector('select');
+            this.startDateElement = parentElement.querySelector('.e-sprint-start');
+            this.endDateElement = parentElement.querySelector('.e-sprint-end');
+            this.taskListElement = parentElement.querySelector('.e-sprint-task-list');
+
+            this.calendar = calendar;
             this.cache = [];
+        }
+
+        initListener() {
+            this.sprintSelectElement.addEventListener('change', this.handleChange.bind(this));
         }
 
         async handleChange (event) {
             let sprintId = event.target.value,
-                sprint = this.getSprintById(sprintId);
+                sprint = await this.getSprintById(sprintId);
 
             let startDate = sprint.start.date,
                 endDate = sprint.end.date,
                 tasks = sprint.tasks;
 
-            let startDateElement = document.createElement('p'),
-                endDateElement = document.createElement('p');
+            this.startDateElement.innerHTML = `Start: ${new Date(startDate).toDateString()}`;
+            this.endDateElement.innerHTML = `End: ${new Date(endDate).toDateString()}`;
 
-            startDateElement.innerHTML = `Start: ${new Date(startDate).toDateString()}`;
-            endDateElement.innerHTML = `End: ${new Date(endDate).toDateString()}`;
+            this.calendar.updateStartDate(startDate);
+            this.calendar.updateEndDate(endDate);
 
-            startDateElement.classList.add('date');
-            endDateElement.classList.add('date');
+            this.taskListElement.innerHTML = '';
+            for (let taskIndex in tasks) {
+                let task = tasks[taskIndex];
+                let li = document.createElement('li');
+                let linkElement = document.createElement('a');
+
+                linkElement.setAttribute('href', task);
+                linkElement.appendChild(document.createTextNode(this.linkToCode(task)));
+                li.appendChild(linkElement);
+
+                this.taskListElement.appendChild(li);
+            }
         }
 
         async getSprintById (sprintId) {
@@ -35,6 +56,10 @@ define([], function () {
             }
 
             return this.cache[sprintId];
+        }
+
+        linkToCode(link) {
+            return link.split('/').reverse()[0] || link;
         }
     }
 
