@@ -10,3 +10,13 @@
 .e-sprint-task img {
     cursor: pointer;
 }
+
+.e-sprint-task .copied {
+    display: none;
+    font-weight: 200;
+    margin-left: 10px;
+}
+
+.e-sprint-task .copied.visible {
+    display: initial;
+}
