@@ -13,6 +13,8 @@ define([], function () {
 
             this.calendar = calendar;
             this.cache = [];
+
+            this.copyIconPath = '/icon/copy.png';
         }
 
         initListener() {
@@ -38,10 +40,17 @@ define([], function () {
                 let task = tasks[taskIndex];
                 let li = document.createElement('li');
                 let linkElement = document.createElement('a');
+                let copyIconElement = document.createElement('img');
 
                 linkElement.setAttribute('href', task);
+                linkElement.setAttribute('target', '_blank');
                 linkElement.appendChild(document.createTextNode(this.linkToCode(task)));
+
+                copyIconElement.setAttribute('src', this.copyIconPath);
+
+                li.classList.add('task');
                 li.appendChild(linkElement);
+                li.appendChild(copyIconElement);
 
                 this.taskListElement.appendChild(li);
             }

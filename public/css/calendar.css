@@ -1,3 +1,8 @@
+@font-face {
+    font-family: 'Lora-Medium';
+    url('../fonts/Lora-Medium.ttf')  format('truetype');
+}
+
 .e-sprint-choice-with-calendar-wrapper .calendar {
     margin-top: 15px;
 }
@@ -87,13 +92,8 @@
     color: white
 }
 
-.e-sprint-choice-with-calendar-wrapper .e-sprint-task-list {
-    padding: 0;
-}
-
 .e-sprint-choice-with-calendar-wrapper .date {
     margin-top: 10px;
-    font-weight: 450;
 }
 
 .e-sprint-choice-with-calendar-wrapper .end-date {
@@ -102,4 +102,17 @@
 
 .e-sprint-choice-with-calendar-wrapper .start-date {
     border: 2px solid green;
+}
+
+.e-sprint-choice-with-calendar-wrapper .task {
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+.e-sprint-choice-with-calendar-wrapper .task a {
+    margin: 0 5px;
+}
+
+.e-sprint-choice-with-calendar-wrapper .task img {
+    cursor: pointer;
 }
