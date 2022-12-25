@@ -1,4 +1,4 @@
-define([], function () {
+define(['component/TaskListBuilder'], function (TaskListBuilder) {
     'use strict';
 
     class SprintSelect {
@@ -9,12 +9,11 @@ define([], function () {
             this.sprintSelectElement = parentElement.querySelector('select');
             this.startDateElement = parentElement.querySelector('.e-sprint-start');
             this.endDateElement = parentElement.querySelector('.e-sprint-end');
-            this.taskListElement = parentElement.querySelector('.e-sprint-task-list');
-
             this.calendar = calendar;
+            this.taskBuilder = new TaskListBuilder(
+                parentElement.querySelector('.e-sprint-task-list')
+            );
             this.cache = [];
-
-            this.copyIconPath = '/icon/copy.png';
         }
 
         initListener() {
@@ -35,25 +34,7 @@ define([], function () {
             this.calendar.updateStartDate(startDate);
             this.calendar.updateEndDate(endDate);
 
-            this.taskListElement.innerHTML = '';
-            for (let taskIndex in tasks) {
-                let task = tasks[taskIndex];
-                let li = document.createElement('li');
-                let linkElement = document.createElement('a');
-                let copyIconElement = document.createElement('img');
-
-                linkElement.setAttribute('href', task);
-                linkElement.setAttribute('target', '_blank');
-                linkElement.appendChild(document.createTextNode(this.linkToCode(task)));
-
-                copyIconElement.setAttribute('src', this.copyIconPath);
-
-                li.classList.add('task');
-                li.appendChild(linkElement);
-                li.appendChild(copyIconElement);
-
-                this.taskListElement.appendChild(li);
-            }
+            this.taskBuilder.build(tasks);
         }
 
         async getSprintById (sprintId) {
@@ -65,10 +46,6 @@ define([], function () {
             }
 
             return this.cache[sprintId];
-        }
-
-        linkToCode(link) {
-            return link.split('/').reverse()[0] || link;
         }
     }
 

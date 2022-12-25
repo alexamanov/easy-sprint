@@ -103,16 +103,3 @@
 .e-sprint-choice-with-calendar-wrapper .start-date {
     border: 2px solid green;
 }
-
-.e-sprint-choice-with-calendar-wrapper .task {
-    font-weight: bold;
-    margin: 10px 0;
-}
-
-.e-sprint-choice-with-calendar-wrapper .task a {
-    margin: 0 5px;
-}
-
-.e-sprint-choice-with-calendar-wrapper .task img {
-    cursor: pointer;
-}

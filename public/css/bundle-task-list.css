@@ -1,7 +1,3 @@
-.e-sprint-choice-with-list-wrapper li {
-    list-style-type: none;
-}
-
-.e-sprint-choice-with-list-wrapper ul {
+.e-sprint-choice-with-list-wrapper #e-sprint-bundle-task-list {
     margin-top: 15px;
 }

@@ -1,0 +1,12 @@
+.e-sprint-task {
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+.e-sprint-task a {
+    margin: 0 5px;
+}
+
+.e-sprint-task img {
+    cursor: pointer;
+}

@@ -1,11 +1,11 @@
-define(function () {
+define(['component/TaskListBuilder'], function (TaskListBuilder) {
     'use strict';
 
     class BundleTaskList {
         constructor(taskListElement, bundleSelectElement) {
-            this.taskListElement = taskListElement;
             this.bundleSelectElement = bundleSelectElement;
             this.cache = [];
+            this.taskBuilder = new TaskListBuilder(taskListElement);
         }
 
         initListener() {
@@ -21,19 +21,7 @@ define(function () {
         }
 
         updateTaskList(tasks) {
-            this.taskListElement.innerText = '';
-
-            for (const taskIndex in tasks) {
-                let li = document.createElement('li'),
-                    linkElement = document.createElement('a'),
-                    task = tasks[taskIndex];
-
-                linkElement.setAttribute('href', task);
-                linkElement.appendChild(document.createTextNode(task));
-                li.appendChild(linkElement);
-
-                this.taskListElement.appendChild(li);
-            }
+            this.taskBuilder.build(tasks);
         }
 
         async getTasksByBundleId(bundleId) {
