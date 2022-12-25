@@ -1,4 +1,6 @@
 require(['schedule/CalendarElement'], function (CalendarElement) {
+    'use strict';
+
     const linkToCode = function (link) {
         return link.split('/').reverse()[0];
     }

@@ -2,9 +2,7 @@ define([], function () {
     'use strict';
 
     class CalendarElement {
-        constructor(
-            parentElement
-        ) {
+        constructor(parentElement) {
             this.parentElement = parentElement;
             this.weekdaysElement = parentElement.querySelector('.weekdays');
 
@@ -18,10 +16,8 @@ define([], function () {
 
             this.currentMonthElement = this.parentElement.querySelector('.e-sprint-month-name');
             this.currentYearElement = this.parentElement.querySelector('.e-sprint-year');
-            this.weekElement = this.parentElement.querySelector('.e-sprint-week');
 
             this.weekdays = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
-            this.weekLabels = ['1st', '2nd', '3rd', '4th', '5th'];
             this.date = new Date();
 
             this.week = this.getCurrentWeek(this.date);
@@ -95,10 +91,6 @@ define([], function () {
             return Math.ceil(date.getDate() / 7);
         }
 
-        getWeekLabel(weekNumber) {
-            return this.weekLabels[weekNumber - 1] + ' week';
-        }
-
         handlePrevClick(event) {
             this.currentMonday = this.minusDays(this.currentMonday, 7);
             this.update();
@@ -111,7 +103,6 @@ define([], function () {
 
         update() {
             this.week = this.getCurrentWeek(this.currentMonday);
-            this.weekElement.innerHTML = `(${this.getWeekLabel(this.week)})`;
             this.currentMonthElement.innerHTML = this.getCurrentMonthName(this.currentMonday);
             this.currentYearElement.innerHTML = this.getCurrentYear(this.currentMonday);
 

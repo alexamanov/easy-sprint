@@ -14,6 +14,14 @@
 
     <div class="e-sprint-choice-with-calendar-wrapper">
         {{ block('choice_widget') }}
+        <div>
+            <p class="e-sprint-start"></p>
+            <p class="e-sprint-end"></p>
+        </div>
+        <div>
+            <h3>Task List</h3>
+            <ul class="e-sprint-task-list"></ul>
+        </div>
         <hr />
         <div class="calendar">
             <div class="month">
@@ -21,7 +29,6 @@
                     <li>
                         <span class="e-sprint-month-name"></span>
                         <span class="e-sprint-year"></span>
-                        <span class="e-sprint-week"></span>
                     </li>
                 </ul>
             </div>
