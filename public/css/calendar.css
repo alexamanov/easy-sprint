@@ -86,6 +86,8 @@
     background: #fafafa;
     display: flex;
     justify-content: center;
+    border-bottom: 1px solid gray;
+    font-size: small;
 }
 
 .e-sprint-choice-with-calendar-wrapper .weekdays li {
@@ -96,8 +98,10 @@
 }
 
 .e-sprint-choice-with-calendar-wrapper .weekdays li.active {
-    color: #00695c;
+    color: white;
     font-weight: bold;
+    background: #00695c;
+    border-radius: 50%;
 }
 
 /* Days (1-31) */
@@ -118,11 +122,18 @@
     min-height: 100px;
     float: left;
     background: #fafafa;
+    border-bottom: 1px solid gray;
+    border-right: 1px solid gray;
+}
+
+.e-sprint-choice-with-calendar-wrapper .cells li:first-child,
+.e-sprint-choice-with-calendar-wrapper .cells li:nth-child(8) {
+    border-left: 1px solid gray;
 }
 
 .e-sprint-choice-with-calendar-wrapper .cells li:hover {
     color: #000;
-    background: #80cbc4;
+    background: #e0f2f1;
 }
 
 .e-sprint-choice-with-calendar-wrapper .cells li p {
@@ -154,4 +165,45 @@
 
 .e-sprint-choice-with-calendar-wrapper .e-sprint-end.date {
     color: brown;
+}
+
+.e-sprint-chunk {
+    margin-top: 20px;
+    margin-left: 77px;
+    border: 1px solid;
+    padding: 20px;
+    border-radius: 20px;
+    width: max-content;
+    display: grid;
+}
+
+.e-sprint-chunk-task-list-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.e-sprint-chunk label {
+    margin-right: 10px;
+}
+
+.e-sprint-chunk-estimate-wrapper {
+    margin-top: 15px;
+}
+
+.e-sprint-chunk button {
+    margin-top: 10px;
+    background: #00695c;
+    color: snow;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+.e-sprint-chunk button:hover {
+    background: #004d40;
+}
+
+.e-sprint-chunk-estimate-wrapper input {
+    max-width: 130px;
 }
