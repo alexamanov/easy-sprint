@@ -101,7 +101,6 @@
     color: white;
     font-weight: bold;
     background: #00695c;
-    border-radius: 50%;
 }
 
 /* Days (1-31) */
@@ -168,11 +167,10 @@
 }
 
 .e-sprint-chunk {
+    background: snow;
     margin-top: 20px;
     margin-left: 77px;
-    border: 1px solid;
     padding: 20px;
-    border-radius: 20px;
     width: max-content;
     display: grid;
 }
