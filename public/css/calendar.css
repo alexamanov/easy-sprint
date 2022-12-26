@@ -3,8 +3,33 @@
     url('../fonts/Lora-Medium.ttf')  format('truetype');
 }
 
-.e-sprint-choice-with-calendar-wrapper .calendar {
-    margin-top: 15px;
+/*.e-sprint-choice-with-calendar-wrapper .calendar {*/
+/*    margin-top: 15px;*/
+/*}*/
+
+.e-sprint-calendar-user-list-wrapper {
+    display: flex;
+}
+
+.e-sprint-calendar-user-list-wrapper .user-list {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    margin-top: 99px;
+}
+
+.e-sprint-calendar-user-list-wrapper .user-list .user {
+    margin-right: 10px;
+    background: #80cbc4;
+    padding: 0 5px;
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.e-sprint-calendar-user-list-wrapper .user-list .user .icon {
+    margin: 0;
 }
 
 .e-sprint-choice-with-calendar-wrapper ul {list-style-type: none;}
@@ -15,6 +40,8 @@
     width: 100%;
     background: #fafafa;
     text-align: center;
+    display: flex;
+    justify-content: center;
 }
 
 /* Month list */
@@ -30,20 +57,25 @@
 }
 
 /* Previous button inside month header */
+.e-sprint-actions {
+    float: right;
+}
+
 .e-sprint-choice-with-calendar-wrapper .prev {
-    float: left;
-    padding-top: 10px;
+    /*float: left;*/
+    /*padding-top: 10px;*/
 }
 
 /* Next button */
 .e-sprint-choice-with-calendar-wrapper .next {
-    float: right;
-    padding-top: 10px;
+    /*float: right;*/
+    /*padding-top: 10px;*/
 }
 
 .e-sprint-choice-with-calendar-wrapper .next, .e-sprint-choice-with-calendar-wrapper .prev {
-    display: flex;
-    align-items: center;
+    margin: 0 10px;
+    /*display: flex;*/
+    /*align-items: center;*/
     cursor: pointer;
 }
 
@@ -51,14 +83,14 @@
 .e-sprint-choice-with-calendar-wrapper .weekdays {
     margin: 0;
     padding: 10px 0;
-    background-color: #fafafa;
+    background: #fafafa;
     display: flex;
     justify-content: center;
 }
 
 .e-sprint-choice-with-calendar-wrapper .weekdays li {
     display: inline-block;
-    width: 11.9%;
+    width: 14.28%;
     color: #333;
     text-align: center;
 }
@@ -70,19 +102,31 @@
 
 /* Days (1-31) */
 .e-sprint-choice-with-calendar-wrapper .cells {
-    padding: 10px 0;
-    background: #f5f5f5;
+    padding: 0;
+    background: #fafafa;
     margin: 0;
 }
 
 .e-sprint-choice-with-calendar-wrapper .cells li {
     list-style-type: none;
     display: inline-block;
-    width: 11.9%;
-    text-align: center;
-    margin-bottom: 5px;
+    width: 14.28%;
     font-size:12px;
-    color: #777;
+    color: #666;
+    padding: 5px;
+    cursor: pointer;
+    min-height: 100px;
+    float: left;
+    background: #fafafa;
+}
+
+.e-sprint-choice-with-calendar-wrapper .cells li:hover {
+    color: #000;
+    background: #80cbc4;
+}
+
+.e-sprint-choice-with-calendar-wrapper .cells li p {
+    margin: 0;
 }
 
 /* Highlight the "current" day */

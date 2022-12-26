@@ -23,17 +23,30 @@ require([
 
     getUsers().then(function (users) {
         let usersCount = users.length;
-        let cellCount = usersCount * 8;
+        let cellCount = usersCount * 7;
 
         for (let i = 0; i < cellCount; i++) {
             let li = document.createElement('li');
 
-            if (i % 8 === 0) {
-                let user = users.pop();
-                li.innerText = emailToUsername(user.email);
-                li.classList.add('active');
-            } else {
-                li.innerText = '⚙';
+            let cellContent = '<p style="margin: 0">D911-1234</p>' +
+                '<p style="margin: 0">D911-4321</p>' +
+                '<p style="margin: 0">D911-9876</p>' + '<b>est: 120m</b>';
+
+            if (i % 3 === 0) {
+                cellContent = '';
+            }
+
+            if (i % 4 === 0) {
+                cellContent = '<p style="margin: 0">D911-1234</p>' +
+                    '<p style="margin: 0">D911-9876</p>' + '<b>est: 30m</b>';
+            }
+
+            li.innerHTML += cellContent;
+            //li.innerHTML = cellContent;
+            //li.style.borderBottom = '1px solid';
+
+            if ((i + 1) % 7 !== 0 || i === 0) {
+                //li.style.borderRight = '1px solid';
             }
 
             cellsElement.appendChild(li);

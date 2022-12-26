@@ -6,16 +6,17 @@ define([], function () {
             this.parentElement = parentElement;
             this.weekdaysElement = parentElement.querySelector('.weekdays');
 
-            this.prevElement = document.createElement('li');
+            this.prevElement = document.createElement('span');
             this.prevElement.innerHTML = '&#10094;';
             this.prevElement.classList.add('prev');
 
-            this.nextElement = document.createElement('li');
+            this.nextElement = document.createElement('span');
             this.nextElement.innerHTML = '&#10095;';
             this.nextElement.classList.add('next');
 
             this.currentMonthElement = this.parentElement.querySelector('.e-sprint-month-name');
             this.currentYearElement = this.parentElement.querySelector('.e-sprint-year');
+            this.actionsElement = this.parentElement.querySelector('.e-sprint-actions');
 
             this.weekdays = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
             this.date = new Date();
@@ -24,6 +25,8 @@ define([], function () {
 
             this.prevElement.addEventListener('click', this.handlePrevClick.bind(this));
             this.nextElement.addEventListener('click', this.handleNextClick.bind(this));
+            this.actionsElement.appendChild(this.prevElement);
+            this.actionsElement.appendChild(this.nextElement);
 
             this.currentMonday = this.getCurrentMonday();
 
@@ -109,7 +112,7 @@ define([], function () {
             this.currentYearElement.innerHTML = this.getCurrentYear(this.currentMonday);
 
             this.weekdaysElement.innerHTML = '';
-            this.weekdaysElement.appendChild(this.prevElement);
+            //this.weekdaysElement.appendChild(this.prevElement);
 
             this.getWeekdays(this.currentMonday).forEach(function (weekday) {
                 let li = document.createElement('li');
@@ -123,7 +126,7 @@ define([], function () {
                 this.weekdaysElement.appendChild(li);
             }.bind(this));
 
-            this.weekdaysElement.appendChild(this.nextElement);
+            //this.weekdaysElement.appendChild(this.nextElement);
 
             this.updateStartDate();
             this.updateEndDate();
