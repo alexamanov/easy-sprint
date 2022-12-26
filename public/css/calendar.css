@@ -96,7 +96,7 @@
 }
 
 .e-sprint-choice-with-calendar-wrapper .weekdays li.active {
-    color: var(--button-primary-bg);
+    color: #00695c;
     font-weight: bold;
 }
 
@@ -145,5 +145,13 @@
 }
 
 .e-sprint-choice-with-calendar-wrapper .start-date {
-    border: 2px solid green;
+    border: 2px solid #00695c;
+}
+
+.e-sprint-choice-with-calendar-wrapper .e-sprint-start.date {
+    color: #00695c;
+}
+
+.e-sprint-choice-with-calendar-wrapper .e-sprint-end.date {
+    color: brown;
 }
