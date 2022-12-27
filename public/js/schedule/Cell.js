@@ -28,10 +28,16 @@ define([], function () {
         }
 
         handleClick(event) {
-            this.taskListElement.value = '';
-            this.estimateElement.value = '';
-
             const cell = event.target;
+
+            const currentTaskList = cell.querySelector('.task-list-container');
+            const currentEstimate = cell.querySelector('.cell-estimate') ? cell.querySelector('.cell-estimate').value : {};
+
+            console.log(currentEstimate);
+
+            this.taskListElement.value = '';
+            this.estimateElement.value = currentEstimate;
+
             const userId = cell.getAttribute('user-id');
             const date = cell.getAttribute('date');
 
@@ -50,6 +56,7 @@ define([], function () {
             const estimate = this.estimateElement.value;
 
             const taskListContainerElement = document.createElement('div');
+            taskListContainerElement.classList.add('task-list-container');
             tasks.split("\n").forEach(function (task) {
                 let taskElement = document.createElement('p');
                 taskElement.innerText = task;
@@ -60,7 +67,7 @@ define([], function () {
             this.estimateElement.value = '';
 
             this.lastCell.appendChild(taskListContainerElement);
-            this.lastCell.appendChild(document.createTextNode(`est: ${estimate}`));
+            this.lastCell.innerHTML += `<b>est:</b> <span class="cell-estimate">${estimate}</span>`;
         }
     }
 
