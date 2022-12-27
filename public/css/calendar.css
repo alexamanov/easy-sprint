@@ -11,14 +11,14 @@
     display: flex;
 }
 
-.e-sprint-calendar-user-list-wrapper .user-list {
+.e-sprint-calendar-user-list-wrapper .e-sprint-user-list {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     margin-top: 99px;
 }
 
-.e-sprint-calendar-user-list-wrapper .user-list .user {
+.e-sprint-calendar-user-list-wrapper .e-sprint-user-list .user {
     margin-right: 10px;
     background: #80cbc4;
     padding: 0 5px;
@@ -28,7 +28,7 @@
     align-items: center;
 }
 
-.e-sprint-calendar-user-list-wrapper .user-list .user .icon {
+.e-sprint-calendar-user-list-wrapper .e-sprint-user-list .user .icon {
     margin: 0;
 }
 
@@ -61,21 +61,8 @@
     float: right;
 }
 
-.e-sprint-choice-with-calendar-wrapper .prev {
-    /*float: left;*/
-    /*padding-top: 10px;*/
-}
-
-/* Next button */
-.e-sprint-choice-with-calendar-wrapper .next {
-    /*float: right;*/
-    /*padding-top: 10px;*/
-}
-
 .e-sprint-choice-with-calendar-wrapper .next, .e-sprint-choice-with-calendar-wrapper .prev {
     margin: 0 10px;
-    /*display: flex;*/
-    /*align-items: center;*/
     cursor: pointer;
 }
 
@@ -123,6 +110,7 @@
     background: #fafafa;
     border-bottom: 1px solid gray;
     border-right: 1px solid gray;
+    min-width: 60px;
 }
 
 .e-sprint-choice-with-calendar-wrapper .cells li:first-child,
@@ -167,11 +155,16 @@
 }
 
 .e-sprint-chunk {
+    display: none;
     background: snow;
     margin-top: 20px;
     margin-left: 77px;
     padding: 20px;
     width: max-content;
+
+}
+
+.e-sprint-chunk.visible {
     display: grid;
 }
 

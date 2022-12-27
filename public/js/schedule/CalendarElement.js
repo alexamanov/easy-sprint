@@ -2,9 +2,10 @@ define([], function () {
     'use strict';
 
     class CalendarElement {
-        constructor(parentElement) {
+        constructor(parentElement, cell) {
             this.parentElement = parentElement;
             this.weekdaysElement = parentElement.querySelector('.weekdays');
+            this.cell = cell;
 
             this.prevElement = document.createElement('span');
             this.prevElement.innerHTML = '&#10094;';
@@ -73,9 +74,16 @@ define([], function () {
             return result;
         }
 
-        getWeekdays(monday) {
-            let weekdays = [];
+        /**
+         * @param {Date|null} monday
+         * @returns {Object[]}
+         */
+        getWeekdays(monday = null) {
+            if (!monday) {
+                monday = this.currentMonday;
+            }
 
+            let weekdays = [];
             this.weekdays.forEach(function (weekday, index) {
                 weekdays[index] = {
                     date: `${monday.getFullYear()}-${monday.getMonth() + 1}-${monday.getDate()}`,
@@ -88,19 +96,33 @@ define([], function () {
             return weekdays;
         }
 
+        /**
+         * @param {Date} date
+         * @returns {string}
+         */
         getCurrentMonthName(date) {
             return date.toLocaleString('default', { month: 'long' });
         }
 
+        /**
+         * @param {Date} date
+         * @returns {number}
+         */
         getCurrentWeek(date) {
             return Math.ceil(date.getDate() / 7);
         }
 
+        /**
+         * @param {Event} event
+         */
         handlePrevClick(event) {
             this.currentMonday = this.minusDays(this.currentMonday, 7);
             this.update();
         }
 
+        /**
+         * @param {Event} event
+         */
         handleNextClick(event) {
             this.currentMonday = this.addDays(this.currentMonday, 7);
             this.update();
@@ -112,9 +134,9 @@ define([], function () {
             this.currentYearElement.innerHTML = this.getCurrentYear(this.currentMonday);
 
             this.weekdaysElement.innerHTML = '';
-            //this.weekdaysElement.appendChild(this.prevElement);
 
-            this.getWeekdays(this.currentMonday).forEach(function (weekday) {
+            const weekdays = this.getWeekdays(this.currentMonday);
+            weekdays.forEach(function (weekday) {
                 let li = document.createElement('li');
 
                 if (weekday.date === this.getCurrentDate()) {
@@ -126,12 +148,15 @@ define([], function () {
                 this.weekdaysElement.appendChild(li);
             }.bind(this));
 
-            //this.weekdaysElement.appendChild(this.nextElement);
-
+            this.cell.render(weekdays);
             this.updateStartDate();
             this.updateEndDate();
         }
 
+        /**
+         * @param {Date} date
+         * @returns {string}
+         */
         formatDate(date) {
             return [date.getFullYear(), date.getMonth() + 1, date.getDate()].join('-');
         }

@@ -189,6 +189,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, \JsonSe
     public function jsonSerialize(): array
     {
         return [
+            'id' => $this->getId(),
             'email' => $this->getEmail(),
         ];
     }
